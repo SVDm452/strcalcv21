@@ -19,11 +19,12 @@ public class Main {
 
         String result = null;
         String operand = findOperation(input);
+        String space = " ";
         int x = input.indexOf(operand);
-        String p1 = input.substring(0, x - 1);
-        String p2 = input.substring(x + 2);
-        //System.out.println(str1);
-        //System.out.println(str2);
+        String p1 = input.substring(0, x);
+        String p2 = input.substring(x + 3);
+        //System.out.println(p1);
+        //System.out.println(p2);
         int l1 = p1.length();
         int l2 = p2.length();
         int st2;
@@ -32,11 +33,11 @@ public class Main {
             String str1 = p1.replace("\"", "");
             if (l1 <= 12 && l2 <= 12) {
                 switch (operand) {
-                    case "+":
+                    case " + ":
                         String str2 = p2.replace("\"", "");
                         result = str1 + str2;
                         break;
-                    case "-":
+                    case " - ":
                         str2 = p2.replace("\"", "");
                         if (str1.contains(str2)) {
                             int i1 = str1.indexOf(str2);
@@ -46,7 +47,7 @@ public class Main {
                             result = str1;
                         }
                         break;
-                    case "*":
+                    case " * ":
                         if (p2.contains("\"")) { throw new Exception("Строку можно умножать только на числа");}
                         else {
                             st2 = parseInt(p2);
@@ -55,7 +56,7 @@ public class Main {
                             } else throw new Exception("Строку можно умножать только на числа от 1 до 10");
                         }
                         break;
-                    case "/":
+                    case " / ":
                         if (p2.contains("\"")) { throw new Exception("Строку можно делить только на числа");}
                         else {
                             st2 = parseInt(p2);
@@ -74,10 +75,10 @@ public class Main {
 
 
     static String findOperation(String input) throws Exception {
-        if (input.contains("+")) return "+";
-        else if (input.contains("-")) return "-";
-        else if (input.contains("*")) return "*";
-        else if (input.contains("/")) return "/";
+        if (input.contains(" + ")) return " + ";
+        else if (input.contains(" - ")) return " - ";
+        else if (input.contains(" * ")) return " * ";
+        else if (input.contains(" / ")) return " / ";
         else throw new Exception("Несоответствие арифметической операции");
     }
 }
